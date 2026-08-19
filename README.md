@@ -11,12 +11,11 @@
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
-- [General AI/ML Notes](#general-aiml-notes)
+- [General AI/ML Notes(手撕)](#general-aiml-notes-手撕)
   - [Loss](#loss)
   - [Transformer](#transformer)
   - [ROPE](#rope)
   - [Normalization](#normalization)
-- [手撕](#手撕)
 
 ## Image Generation
 
@@ -90,7 +89,7 @@
 - **Scaling `rectified flow` transformers for high-resolution image synthesis**
 ## 3D Generation
 
-## General AI/ML Notes
+## General AI/ML Notes(手撕)
 #### Loss
 
 MSELoss，BCE Loss，KL penalty 
@@ -99,7 +98,9 @@ MSELoss，BCE Loss，KL penalty
 
 多头注意力MHA，(MQA)
 
-Transformer Encoder Block /Decoder Block/
+Transformer Encoder Block /Decoder Block
+
+#### LoRA
 
 ### ROPE
 
@@ -108,5 +109,4 @@ Transformer Encoder Block /Decoder Block/
 LayerNorm，RMSNorm
 
 
-## 手撕
 
