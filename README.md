@@ -18,6 +18,9 @@
   - [ROPE](#rope)
   - [Normalization](#normalization)
 
+
+- 每个知识点由原始论文的 "动机→贡献→局限→可追问" 组成。
+
 ## Image Generation
 
 #### CFG
@@ -45,7 +48,6 @@
 
 - 原始论文: [Scalable_Diffusion_Models_with_Transformers_ICCV_2023](https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html)
 - Background：xie saining，beeples，成为了后来 SD3、Flux、Sora 的 backbone
-- "动机→贡献→局限→可追问"准备
 - Motivation：
     - 提出了一个反事实问题：扩散模型里大家长期默认 U-Net 是不是必须的？DiT 这个工作把这个默认假设打掉了，在 LDM latent 空间里用 ViT 风格的 transformer 主干。
     - 他们发现：用前向计算量（Gflops）而不是参数量来看扩展更关键，`更高 GFLOPs 下 FID 明显下降`，验证了 scaling law，支持了"扩展优先于单点调参"，与"transformer 在 NLP/Vision 中有良好缩放性"思路一致。
