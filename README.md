@@ -11,7 +11,7 @@
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
-- [General AI/ML Notes(手撕)](#general-aiml-notes)
+- [General AI/ML Notes 手撕](#general-aiml-notes-手撕)
   - [Loss](#loss)
   - [Transformer](#transformer)
   - [ROPE](#rope)
@@ -94,7 +94,7 @@
 - **Scaling `rectified flow` transformers for high-resolution image synthesis**
 ## 3D Generation
 
-## General AI/ML Notes(手撕)
+## General AI/ML Notes 手撕
 #### Loss
 
 MSELoss，BCE Loss，KL penalty 
