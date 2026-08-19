@@ -42,7 +42,7 @@
 <details>
 <summary>📖 详细内容（点击展开）</summary>
 
-- [Scalable_Diffusion_Models_with_Transformers_ICCV_2023](https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html)
+- 原始论文: [Scalable_Diffusion_Models_with_Transformers_ICCV_2023](https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html)
 - Background：xie saining，beeples，成为了后来 SD3、Flux、Sora 的 backbone
 - "动机→贡献→局限→可追问"准备
 - Motivation：
