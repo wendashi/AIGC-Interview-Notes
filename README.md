@@ -119,6 +119,10 @@ Transformer Encoder Block /Decoder Block
 
 #### Normalization
 
+#### DeepSpeed
+
+#### 训练精度
+
 LayerNorm，RMSNorm
 
 
