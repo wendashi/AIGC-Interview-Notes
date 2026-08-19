@@ -1,5 +1,22 @@
 # AIGC-八股记录📝
 
+## 📋 目录
+
+- [Image Generation](#image-generation)
+  - [CFG](#cfg)
+  - [DDPM，DDIM](#ddpmddim)
+  - [LDM (Stable Diffusion)](#ldm-stable-diffusion-cvpr22)
+  - [DiT](#dit-iccv23)
+  - [Flow matching](#flow-matching-iclr23)
+  - [Rectified flow](#rectified-flow-iclr23)
+  - [SD3/Flux](#sd3flux-icml24)
+- [3D Generation](#3d-generation)
+- [General AI/ML Notes](#general-aiml-notes)
+  - [Loss](#loss)
+  - [Transformer](#transformer)
+  - [ROPE](#rope)
+  - [Normalization](#normalization)
+- [手撕](#手撕)
 
 ## Image Generation
 
