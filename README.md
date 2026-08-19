@@ -6,6 +6,7 @@
   - [CFG](#cfg)
   - [DDPM，DDIM](#ddpmddim)
   - [LDM (Stable Diffusion)](#ldm-stable-diffusion-cvpr22)
+  - [Controllable Image Generation Methods](#controllable-image-generation-methods)
   - [DiT](#dit-iccv23)
   - [Flow matching](#flow-matching-iclr23)
   - [Rectified flow](#rectified-flow-iclr23)
@@ -33,8 +34,8 @@
 
 #### LDM (Stable Diffusion)-CVPR22
 
-#### DreamBooth-CVPR23，Textual Inversion-ICLR23，Custom Diffusion-CVPR23，ControlNet-ICCV23，IP-Adapter-Arxiv
-
+#### Controllable Image Generation Methods
+- DreamBooth-CVPR23，Textual Inversion-ICLR23，Custom Diffusion-CVPR23，ControlNet-ICCV23，IP-Adapter-Arxiv
 - 可控生成，定制生成
 
 #### DiT-ICCV23
