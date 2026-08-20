@@ -27,7 +27,9 @@
 
 #### DDPM，DDIM，
 
-(1) `Ho/Diffusion lineage` 指的是从 **Ho et al. 的 DDPM (Denoising Diffusion Probabilistic Models, 2020)** 开始的这条技术主线。
+- `Ho/Diffusion lineage` 指的是从 **Ho et al. 的 DDPM (Denoising Diffusion Probabilistic Models, 2020)** 开始的这条技术主线。
+- DDPM的加噪方式
+- DDPM和Flow Matching 区别为什么大家转FlowMatching
 
 核心思想是：
 
@@ -87,11 +89,6 @@
 
 - Flow matching是怎么做的
     - Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximilian Nickel, and Matt Le. Flow matching for generative modeling. ICLR, 2023.
-- DDPM的加噪方式
-- DDPM和Flow Matching 区别为什么大家转FlowMatching
-- 在上一段实习过程中遇到的问题以及如何解决
-- 如果方法和模型都不变，如何去提高效果，涉及到一些优化trick，比较工程上的经验
-- 现在ar做visual generation是怎么做的coding:给定一个数A，给定一组数字B，求由B中数字构成的小于A的最大数字。
 
 #### Rectified flow-ICLR23
 
