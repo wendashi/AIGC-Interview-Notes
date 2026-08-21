@@ -71,11 +71,11 @@
         - 用的是 LDM 的 VAE，只是改 backbone 部分。
     - 为什么不用参数量判断规模？
         - 因为论文强调参数量不能比较不同 patch 解析度下的复杂度，Gflops 更公平。
-    - 为什么 adaLN-Zero 有用？
-        - 完整路径: 'time/label -> MLP -> adaLN-Zero 的 shift/scale/gate 来调节每层特征'.
-        - DiT 用 adaLN-Zero 的核心价值是把时间步和类别条件做成逐层逐通道的仿射调制（shift/scale），再用零初始化门控控制残差支路强度。
-        - 这样模型在所有 t 上共享同一结构却能动态适配不同噪声阶段，训练更稳定，也更容易扩展到更深更大的 transformer。
-        - 在“信息注入带宽”上，adaLN‑Zero 一般比 cross‑attention 弱，因为它主要是把条件变成“全局的缩放/偏置（FiLM）”去调节每层特征，注入的是更低秩、全局性的信号。
+    - 为什么 adaLN-Zero 有用？(一种暂时性的妥协)
+        - 完整路径: 'time/label -> MLP -> adaLN-Zero 的 shift/scale/gate 来调节每层特征'。
+        - 是为了先把 transformer “能在 diffusion 框架下跑得稳”这件事解决掉”，所以尽量减少额外复杂性，做一个清晰、稳定的 baseline。
+        - 基于 ImageNet 类别生成这个任务里，time/label 本身是“低维全局条件”，用 adaLN-Zero 做全局 FiLM 调制（shift/scale/gate）就是很自然、很高效的注入方式。
+          - DiT 原版的场景不需要先把复杂度加到那么高，因此用了更“轻”的注入。
           - adaLN‑Zero = 低成本全局门控，cross‑attention = 高成本高表达力的局部对齐。
     - 为什么与 U-Net 无关？
         - 论文把模型尽量做成"最标准 ViT"，避免工程 trick 过多。
