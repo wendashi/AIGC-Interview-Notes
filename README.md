@@ -57,7 +57,7 @@
         - **扩展**：在给定算力预算内，按规律增大模型规模（更深更宽、更大输入 token、更多层等），即"系统性增加容量和计算量"（DiT里用 GFLOPs 描述）。
         - `GFLOPs = 10^9 FLOPs`；`FLOPs`（floating point operations）是浮点运算次数，常按一次乘加（MAC）计 2 次浮点运算（不同文献有时用约定不同，但方向一致）。
         - "一次前向传播大约要做多少`十亿次浮点运算`"，`数值越高通常意味着模型越耗算力、也通常能承载更复杂表达能力`。
-    - 关键就是 '随 compute 规模化后的泛化规律是否稳定'，DiT 的贡献在于把这种规律成功搬到 denoising 主干上。
+    - 关键就是 '随模型所需算力的增加，模型效果是否稳定提升'，DiT 的贡献在于把这种规律成功搬到 denoising 主干上。
 - Contribution：
     - 架构替换：把 LDM 的 U-Net 换成纯 transformer 主干，输入是 latent patch token。
     - 条件注入机制：作者强调"adaLN / adaLN-Zero"是关键设计，显著影响 FID，核心差异几乎只在此，说明贡献是"标准 ViT 的有效移植"。
