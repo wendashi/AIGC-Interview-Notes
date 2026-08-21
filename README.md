@@ -60,6 +60,7 @@
     - 关键就是 '随模型所需算力的增加，模型效果是否稳定提升'，DiT 的贡献在于把这种规律成功搬到 denoising 主干上。
 - Contribution：
     - 架构替换：把 LDM 的 U-Net 换成纯 transformer 主干，输入是 latent patch token。
+      - latent patch token：DiT 不是“把图像先 patch 再进模型”，而是先经过 VAE 到 latent，再 patchify latent。完整链路：image → VAE encoder（下采样到 32×32、4 通道 latent）→ latent patch token（如 p=2/4）→ Transformer 去噪主干 → unpatchify 回 4×32×32/64×64 latent → VAE decoder 回图像。
     - 条件注入机制：作者强调"adaLN / adaLN-Zero"是关键设计，显著影响 FID，核心差异几乎只在此，说明贡献是"标准 ViT 的有效移植"。
     - 计算规模规律：提出并验证"模型规模（深度宽度）与 token 数（patch 大小时）一起决定复杂度和质量"，并比较了 12 个模型（S/B/L/XL × patch 8/4/2）。
     - 实验上：DiT-XL/2 在 ImageNet 256 和 512 达到 SOTA 水平（256 上 FID 2.27、512 上 FID 3.04）。
