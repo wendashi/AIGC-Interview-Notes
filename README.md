@@ -52,19 +52,19 @@
 - Background：xie saining，beeples，成为了后来 SD3、Flux、Sora 的 backbone
 - Motivation：
     - 提出了一个反事实问题：扩散模型里大家长期默认 U-Net 是不是必须的？DiT 这个工作把这个默认假设打掉了，在 LDM latent 空间里用 ViT 风格的 transformer 主干。
+- Contribution：
+    - 架构替换：把 LDM 的 U-Net 换成纯 transformer 主干，输入是 latent patch token。
+      - latent patch token：DiT 不是“把图像先 patch 再进模型”，而是先经过 VAE 到 latent，再 patchify latent。完整链路：image → VAE encoder（下采样到 32×32、4 通道 latent）→ latent patch token（如 p=2/4）→ Transformer 去噪主干 → unpatchify 回 4×32×32/64×64 latent → VAE decoder 回图像。
+    - 条件注入机制：DiT 要求模型在每个扩散时间步 t 和类别 y 下行为都不同，所以作者用了 adaLN / adaLN-Zero：
+      - 让归一化和残差有条件参数，具体是由 (t,y) 经过 MLP 生成 scale/shift/gate，动态调制每一层。Zero 初始化让训练初期更稳定（残差门控从 0 开始，后续再逐步学）。
     - 他们发现：用前向计算量（Gflops）而不是参数量来看扩展更关键，`更高 GFLOPs 下 FID 明显下降`，验证了 scaling law，支持了"扩展优先于单点调参"，与"transformer 在 NLP/Vision 中有良好缩放性"思路一致。
         - **单点调参**：把模型结构和规模基本不变，只是在同一模型上改学习率、batch、步长、数据增强、采样步数、权重衰减等"单个/局部超参"来榨性能。
         - **扩展**：在给定算力预算内，按规律增大模型规模（更深更宽、更大输入 token、更多层等），即"系统性增加容量和计算量"（DiT里用 GFLOPs 描述）。
         - `GFLOPs = 10^9 FLOPs`；`FLOPs`（floating point operations）是浮点运算次数，常按一次乘加（MAC）计 2 次浮点运算（不同文献有时用约定不同，但方向一致）。
         - "一次前向传播大约要做多少`十亿次浮点运算`"，`数值越高通常意味着模型越耗算力、也通常能承载更复杂表达能力`。
     - 关键就是 '随模型所需算力的增加，模型效果是否稳定提升'，DiT 的贡献在于把这种规律成功搬到 denoising 主干上。
-- Contribution：
-    - 架构替换：把 LDM 的 U-Net 换成纯 transformer 主干，输入是 latent patch token。
-      - latent patch token：DiT 不是“把图像先 patch 再进模型”，而是先经过 VAE 到 latent，再 patchify latent。完整链路：image → VAE encoder（下采样到 32×32、4 通道 latent）→ latent patch token（如 p=2/4）→ Transformer 去噪主干 → unpatchify 回 4×32×32/64×64 latent → VAE decoder 回图像。
-    - 条件注入机制：DiT 要求模型在每个扩散时间步 t 和类别 y 下行为都不同，所以作者用了 adaLN / adaLN-Zero：
-      - 让归一化和残差有条件参数，具体是由 (t,y) 经过 MLP 生成 scale/shift/gate，动态调制每一层。Zero 初始化让训练初期更稳定（残差门控从 0 开始，后续再逐步学）。
-    - 计算规模规律：提出并验证"模型规模（深度宽度）与 token 数（patch 大小时）一起决定复杂度和质量"，并比较了 12 个模型（S/B/L/XL × patch 8/4/2）。
-    - 实验上：DiT-XL/2 在 ImageNet 256 和 512 达到 SOTA 水平（256 上 FID 2.27、512 上 FID 3.04）。
+      - 计算规模规律：提出并验证"模型规模（深度宽度）与 token 数（patch 大小时）一起决定复杂度和质量"，并比较了 12 个模型（S/B/L/XL × patch 8/4/2）。
+      - 实验上：DiT-XL/2 在 ImageNet 256 和 512 达到 SOTA 水平（256 上 FID 2.27、512 上 FID 3.04）。
 - 面试常见追问：为什么这些设计是对的
     - 为什么必须在 latent 空间？
         - 因为像素空间 token 数暴涨，attention 的二次复杂度会崩；`latent 32×32 (256x256/8) 空间下 token 数可控`。
