@@ -156,7 +156,7 @@
 
 例如线性模型：
 
-$$\hat Y=XW+b,\qquadL=\frac{1}{N}\sum(\hat Y-Y)^2$$
+$$\hat Y=XW+b, L=\frac{1}{N}\sum(\hat Y-Y)^2$$
 
 
 ```python
