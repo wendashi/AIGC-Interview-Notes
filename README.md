@@ -159,19 +159,25 @@
 - 梯度: $$\frac{\partial \mathrm{MSE}}{\partial \hat{y}_i}=\frac{2}{N}(\hat{y}_i-y_i)$$
      
 ```
-import torch
-import torch.nn.functional as F
-
+# x1：真实数据，例如一批图像
+# x0：与 x1 形状相同的高斯噪声
 x0 = torch.randn_like(x1)
+
+# t：随机时间，并扩展维度以便与图像广播
 t = torch.rand(x1.shape[0], device=x1.device)
 t = t.view(-1, 1, 1, 1)
 
+# t 时刻的中间状态
 xt = (1 - t) * x0 + t * x1
+
+# 正确答案：真实速度
 target = x1 - x0
 
+# pred：模型根据当前状态 xt 和时间 t 预测的速度
 pred = model(xt, t)
-loss = F.mse_loss(pred, target) # PyTorch 调用
-loss = ((pred - target) ** 2).mean() # 纯手写
+# pred.shape   == target.shape == [batch_size, channels, height, width]
+squared_error = (pred - target) ** 2
+loss = squared_error.sum() / squared_error.numel()
 ```
 </details>
 
