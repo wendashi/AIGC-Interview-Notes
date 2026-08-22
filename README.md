@@ -89,8 +89,48 @@
 
 #### Flow matching-ICLR23
 
-- Flow matching是怎么做的
-    - Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximilian Nickel, and Matt Le. Flow matching for generative modeling. ICLR, 2023.
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+
+- 原始论文: *[Flow Matching for Generative Modeling](https://github.com/facebookresearch/flow_matching)*，ICLR2023。
+- Background:
+    ```
+    传统 CNF
+      └── ODE 生成，但最大似然训练昂贵,需要反复求解 ODE、计算散度，因此难以扩展到高维图像。
+    Diffusion/Score Matching (训练更稳定，但其概率路径主要受扩散过程约束，路径可能比较弯曲，采样通常需要较多函数评估。
+      ├── DDPM：随机反向过程
+      ├── DDIM：可确定性采样
+      └── Probability-flow ODE：也能写成 ODE
+    Flow Matching
+      └── 训练 CNF 的新方法
+          ├── 可以使用 diffusion path
+          └── 也可以使用 OT 等非 diffusion path
+    ```
+- Motivation
+  - 能否直接指定一条从噪声到数据的概率路径，并监督产生这条路径的速度场？
+  - 能否训练 CNF 时不求解 ODE，同时允许使用比 diffusion path 更简单的路径？
+  - 如何绕过通常无法显式计算的边缘概率路径 $p_t(x)$ 和边缘速度场 $u_t(x)$？
+
+- Contribution
+  - 提出 Flow Matching 目标：
+     $$\mathcal L_{\mathrm{FM}}(\theta) = \mathbb E_{t,\,X_t\sim p_t}\left[\left\|v_\theta(t,X_t)-u_t(X_t)\right\|_2^2\right].$$  
+  - 提出可计算的 Conditional Flow Matching（CFM），证明它与 FM 对参数 $\theta$ 的梯度完全相同。  
+  - 给出一般高斯条件路径的解析速度场。  
+  - 证明 diffusion probability path 是该框架的特例。因此 FM 并不是只能使用 OT path，也不是与 diffusion 完全无关的模型。  
+  - 引入条件 OT 路径。条件粒子沿直线、匀速运动，使速度回归和 ODE 数值求解更加简单。  
+  - 在论文的同架构实验中，FM-OT 在 likelihood、FID 和 NFE 上总体优于所比较的 diffusion baselines。
+
+- Limitation
+
+  - **训练 simulation-free，不代表采样 simulation-free**：生成阶段仍然需要数值求解 ODE。
+  - 条件 OT 路径对每个条件高斯分布是 OT displacement interpolation，但**不保证边缘化后的整体向量场是全局 OT 解**。
+  - 论文将条件终点设置为  $$p_1(x\mid x_1)=\mathcal N\!\left(x\mid x_1,\sigma_{\min}^2I\right),$$ 因此当 $\sigma_{\min}>0$ 时，边缘终点只是近似数据分布。
+  - 最终效果仍然受到神经网络拟合误差和 ODE 离散误差影响。
+  - 计算 likelihood 仍需要积分向量场散度，实际中通常使用 Hutchinson trace estimator。
+  - 原论文实验集中在 CIFAR-10、ImageNet 和 U-Net，不能只根据这些实验断言它对所有模态和架构都最优。
+
+</details>
+
 
 #### Rectified flow-ICLR23
 
