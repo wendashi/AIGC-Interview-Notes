@@ -13,6 +13,7 @@
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
 - [General AI/ML Notes 手撕](#general-aiml-notes-手撕)
+  - [Backpropagation](#backpropagation)
   - [Loss](#loss)
     - [MSE Loss](#mse-loss)
   - [Transformer](#transformer)
