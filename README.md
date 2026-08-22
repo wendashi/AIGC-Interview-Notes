@@ -150,7 +150,9 @@
 <details>
 <summary>📖 详细内容（点击展开）</summary>
   
-- MSE（Mean Squared Error，均方误差）用于回归任务：计算预测值与真实值之差的平方，再对所有样本取平均。
+- MSE（Mean Squared Error，均方误差）用于回归任务：计算预测值与真实值之差的平方，再对所有样本取平均。 
+  - 为什么 MSE 适合回归？因为回归预测的是连续值。
+  - Diffusion 本质是回归吗？整体目标是生成建模，但训练被转化成了回归问题。
 - 平方的作用：1) 消除正负误差抵消。2) 大误差会受到更强惩罚。3) 连续可导，方便梯度下降。4) 缺点是对异常值比较敏感。
 - 公式: $$\mathrm{MSE}=\frac{1}{N}\sum_{i=1}^{N}(\hat y_i-y_i)^2$$, 其中 $\hat y_i$ :模型预测值, $y_i$ :真实值, $N$ :元素或样本数量。
 - 梯度: $$\frac{\partial \mathrm{MSE}}{\partial \hat{y}_i}=\frac{2}{N}(\hat{y}_i-y_i)$$
