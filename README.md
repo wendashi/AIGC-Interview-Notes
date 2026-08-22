@@ -96,8 +96,8 @@
 - 原始论文: *[Flow Matching for Generative Modeling(Meta FAIR)](https://github.com/facebookresearch/flow_matching)*，ICLR2023。
 - Background:
     ```
-    传统 CNF
-      └── ODE 生成，但最大似然训练昂贵,需要反复求解 ODE、计算散度，因此难以扩展到高维图像。
+    传统 CNF(Continuous Normalizing Flows)
+      └── ODE(Ordinary Differential Equation 常微分方程）生成，但最大似然训练昂贵,需要反复求解 ODE、计算散度，因此难以扩展到高维图像。
     Diffusion/Score Matching (训练更稳定，但其概率路径主要受扩散过程约束，路径可能比较弯曲，采样通常需要较多函数评估。
       ├── DDPM：随机反向过程
       ├── DDIM：可确定性采样
