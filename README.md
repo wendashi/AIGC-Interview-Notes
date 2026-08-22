@@ -144,6 +144,50 @@
 ## 3D Generation
 
 ## General AI/ML Notes 手撕
+
+#### Backpropagation
+
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+
+- 它利用链式法则，从 Loss 开始逐层向前计算每个模型参数的梯度。
+- 常见要求是：1. 手写 Loss 的前向计算。2. 推导 Loss 对预测值的梯度。3. 解释梯度如何通过链式法则传到参数。4. 区分 `zero_grad()`、`backward()`、`step()`。
+
+例如线性模型：
+
+$$\hat Y=XW+b,\qquadL=\frac{1}{N}\sum(\hat Y-Y)^2$$
+
+
+```python
+# 手写反向传播：
+# forward
+pred = X @ W + b
+error = pred - target
+loss = (error ** 2).sum() / error.numel()
+
+# backward
+grad_pred = 2 * error / error.numel()
+grad_W = X.T @ grad_pred
+grad_b = grad_pred.sum(dim=0)
+
+# update
+with torch.no_grad():
+    W -= lr * grad_W
+    b -= lr * grad_b
+```
+
+对应链式法则：$$\frac{\partial L}{\partial W}=\frac{\partial L}{\partial\hat Y}\frac{\partial\hat Y}{\partial W}.$$
+
+```python
+# PyTorch 版本：
+optimizer.zero_grad()  # 清空上一次梯度
+loss.backward()        # 自动计算 grad_W、grad_b
+optimizer.step()       # 更新 W、b
+```
+
+面试最关键的一句： `backward()` 只计算并保存梯度，真正更新参数的是 `optimizer.step()`。
+</details>
+
 #### Loss
 
 ##### [MSE Loss](https://docs.pytorch.org/docs/2.13/generated/torch.nn.MSELoss.html)
@@ -177,7 +221,7 @@ target = x1 - x0
 pred = model(xt, t)
 # pred.shape   == target.shape == [batch_size, channels, height, width]
 squared_error = (pred - target) ** 2
-loss = squared_error.sum() / squared_error.numel()
+loss = squared_error.sum() / squared_error.numel()  # .numel() 是 PyTorch 张量 Tensor 的函数，返回张量中元素的总数量。
 ```
 </details>
 
