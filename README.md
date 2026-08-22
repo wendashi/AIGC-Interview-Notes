@@ -14,6 +14,7 @@
 - [3D Generation](#3d-generation)
 - [General AI/ML Notes 手撕](#general-aiml-notes-手撕)
   - [Loss](#loss)
+    - [MSE Loss](#mse-loss)
   - [Transformer](#transformer)
   - [ROPE](#rope)
   - [Normalization](#normalization)
@@ -92,7 +93,7 @@
 <details>
 <summary>📖 详细内容（点击展开）</summary>
 
-- 原始论文: *[Flow Matching for Generative Modeling](https://github.com/facebookresearch/flow_matching)*，ICLR2023。
+- 原始论文: *[Flow Matching for Generative Modeling(Meta FAIR)](https://github.com/facebookresearch/flow_matching)*，ICLR2023。
 - Background:
     ```
     传统 CNF
@@ -144,7 +145,36 @@
 ## General AI/ML Notes 手撕
 #### Loss
 
-MSELoss，BCE Loss，KL penalty 
+##### [MSE Loss](https://docs.pytorch.org/docs/2.13/generated/torch.nn.MSELoss.html)
+
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+  
+- MSE（Mean Squared Error，均方误差）用于回归任务：计算预测值与真实值之差的平方，再对所有样本取平均。
+- 平方的作用：1) 消除正负误差抵消。2) 大误差会受到更强惩罚。3) 连续可导，方便梯度下降。4) 缺点是对异常值比较敏感。
+- 公式: $$\mathrm{MSE}=\frac{1}{N}\sum_{i=1}^{N}(\hat y_i-y_i)^2$$, 其中 $\hat y_i$ :模型预测值, $y_i$ :真实值, $N$ :元素或样本数量。
+- 梯度: $$\frac{\partial \mathrm{MSE}}{\partial \hat{y}_i}=\frac{2}{N}(\hat{y}_i-y_i)$$
+     
+```
+import torch
+import torch.nn.functional as F
+
+x0 = torch.randn_like(x1)
+t = torch.rand(x1.shape[0], device=x1.device)
+t = t.view(-1, 1, 1, 1)
+
+xt = (1 - t) * x0 + t * x1
+target = x1 - x0
+
+pred = model(xt, t)
+loss = F.mse_loss(pred, target) # PyTorch 调用
+loss = ((pred - target) ** 2).mean() # 纯手写
+```
+</details>
+
+BCE Loss
+
+KL penalty 
 
 #### Transformer
 
