@@ -177,7 +177,7 @@ with torch.no_grad():
     b -= lr * grad_b
 ```
 
-对应链式法则：$$\frac{\partial L}{\partial W}=\frac{\partial L}{\partial \hat{Y}}\frac{\partial \hat{Y}}{\partial W}$$
+对应链式法则: $$\frac{\partial L}{\partial W}=\frac{\partial L}{\partial \hat{Y}}\frac{\partial \hat{Y}}{\partial W}$$
 
 ```python
 # PyTorch 版本：
