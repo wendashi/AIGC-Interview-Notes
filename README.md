@@ -236,9 +236,20 @@ KL penalty
 
 Transformer Encoder Block /Decoder Block
 
+#### Self-Attention/Casual-Attention
+
+#### Cross-Attention
+
+#### Multi-head Attention
+
+
+
+#### ROPE
+
+#### KV cache
+
 #### LoRA
 
-### ROPE
 
 #### Normalization
 
