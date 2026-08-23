@@ -228,7 +228,12 @@ loss = squared_error.sum() / squared_error.numel()  # .numel() 是 PyTorch 张�
 
 BCE Loss
 
+Softmax
+
 KL penalty 
+KL散度计算
+
+AUC(Area Under the Curve)
 
 #### Transformer
 
@@ -252,6 +257,8 @@ Transformer Encoder Block /Decoder Block
 
 
 #### Normalization
+
+手撕RMSnorm/layerNorm/BatchNorm
 
 #### DeepSpeed
 
