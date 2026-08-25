@@ -8,7 +8,7 @@
   - [LDM (Stable Diffusion)](#ldm-stable-diffusion-cvpr22)
   - [Controllable Image Generation Methods](#controllable-image-generation-methods)
   - [DiT](#dit-iccv23)
-  - [SiT](sit-eccv24)
+  - [SiT](#sit-eccv24)
   - [Flow matching](#flow-matching-iclr23)
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
