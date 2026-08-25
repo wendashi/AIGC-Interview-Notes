@@ -152,6 +152,10 @@
 - **Scaling `rectified flow` transformers for high-resolution image synthesis**
 ## 3D Generation
 
+#### SiT-ECCV24
+
+- https://github.com/willisma/SiT
+
 ## General AI/ML Notes 手撕
 
 #### Backpropagation
