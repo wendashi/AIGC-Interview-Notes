@@ -8,6 +8,7 @@
   - [LDM (Stable Diffusion)](#ldm-stable-diffusion-cvpr22)
   - [Controllable Image Generation Methods](#controllable-image-generation-methods)
   - [DiT](#dit-iccv23)
+  - [SiT](sit-eccv24)
   - [Flow matching](#flow-matching-iclr23)
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
@@ -150,11 +151,16 @@
 #### SD3/Flux-ICML24
 
 - **Scaling `rectified flow` transformers for high-resolution image synthesis**
-## 3D Generation
+
 
 #### SiT-ECCV24
 
 - https://github.com/willisma/SiT
+  
+
+## 3D Generation
+
+
 
 ## General AI/ML Notes 手撕
 
