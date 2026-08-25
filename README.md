@@ -1,7 +1,7 @@
 # AIGC-八股记录📝
 
 ## 📋 目录
-
+- [Vision Language](#vision-language)
 - [Image Generation](#image-generation)
   - [CFG](#cfg)
   - [DDPM，DDIM](#ddpmddim)
@@ -22,6 +22,14 @@
 
 
 - 每个知识点由原始论文的 "动机→贡献→局限→可追问" 组成。
+
+## Vision Language
+
+#### CLIP
+
+#### DINO(v3)
+
+#### Qwen3.8-VL
 
 ## Image Generation
 
