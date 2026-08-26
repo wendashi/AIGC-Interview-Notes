@@ -161,6 +161,11 @@
 ## 3D Generation
 
 
+## World Model
+- Cosmos 3
+
+## Simulation
+- Isaac SIm, 
 
 ## General AI/ML Notes 手撕
 
@@ -279,6 +284,7 @@ Transformer Encoder Block /Decoder Block
 手撕RMSnorm/layerNorm/BatchNorm
 
 #### DeepSpeed
+- ZeRO-1/ZeRO-2/ZeRO-3
 
 #### 训练精度
 
