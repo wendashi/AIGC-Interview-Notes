@@ -13,6 +13,8 @@
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
+- [World Model](#world-model)
+- [Simulation](#simulation)
 - [General AI/ML Notes 手撕](#general-aiml-notes-手撕)
   - [Backpropagation](#backpropagation)
   - [Loss](#loss)
@@ -165,8 +167,10 @@
 - Cosmos 3
 
 ## Simulation
-- Isaac SIm, 
+- Isaac SIm
+- MuJoCo
 
+  
 ## General AI/ML Notes 手撕
 
 #### Backpropagation
