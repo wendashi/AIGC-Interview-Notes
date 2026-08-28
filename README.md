@@ -164,6 +164,7 @@
 
 - VecSet(Shape2VecSet)
 - VoxSet(Lattice)
+- Vertex-set([MeshyT2](https://github.com/meshy-dev/meshy-t2))
 - Trellis
 - Trellis2
 
