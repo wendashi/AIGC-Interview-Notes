@@ -162,6 +162,10 @@
 
 ## 3D Generation
 
+- VecSet(Shape2VecSet)
+- VoxSet(Lattice)
+- Trellis
+- Trellis2
 
 ## World Model
 - Cosmos 3
