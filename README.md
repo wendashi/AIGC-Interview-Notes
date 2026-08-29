@@ -168,6 +168,13 @@
 - Trellis
 - Trellis2
 
+#### DCx(SIG' 2026)
+- [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
+- 本质是针对 NUDF 的扩展版 DC，目标是
+  1. LUT(LookUp Table) DCx 会考察每个局部 2×2×2 邻域中的 8 个 voxel：每个位置上 1 = active voxel / 0 = empty voxel
+  2. 
+
+
 ## World Model
 - Cosmos 3
 
@@ -290,14 +297,34 @@ Transformer Encoder Block /Decoder Block
 
 #### Normalization
 
-手撕RMSnorm/layerNorm/BatchNorm
+- 手撕 RMSNorm/LayerNorm/BatchNorm
 
 #### DeepSpeed
 - ZeRO-1/ZeRO-2/ZeRO-3
 
 #### 训练精度
 
-LayerNorm，RMSNorm
+FP16, BF16, FP32
+- log_scale 控制 FP16 的 loss scaling：反向前放大 loss，避免小梯度下溢。
+  - 出现梯度溢出/NaN 时它会降低；持续降到负数说明即使不放大梯度仍溢出，训练已严重不稳定。
+  - 具体是怎么起作用的？是对loss加一个log_scale的权重？
+  - 不是把 log_scale 当普通权重相加或相乘。实际是：
+    ```
+    scale = 2 ** log_scale
+    (loss × scale).backward()
+    gradient = gradient / scale
+    ```
+  - 它只让 FP16 反向计算中的小梯度更容易表示，理论上不改变最终梯度。若检测到 Inf/NaN，就跳过该次更新并降低 log_scale。
 
 
+#### 各类 Optimizer
+- Adam
+- Weights-only 初始化: 只加载模型权重，不加载 optimizer、训练 step、sampler 和 FP16 log_scale。
 
+#### 梯度问题
+- 梯度消失
+- 梯度溢出/数值爆炸
+  - gradient clipping: clipping 只能限制有限的大梯度；梯度已经变成 NaN/Inf 时无法修复，只能跳过该次更新并降低 log_scale。
+  - gradient accumulate: 有限缓解，不是主要解法。
+
+  本次更应优先：降低 LR，并让 adapter/BCE logits 使用 BF16 或 FP32。
