@@ -2,6 +2,7 @@
 
 ## 📋 目录
 - [Vision Language](#vision-language)
+- [Visual Agent](#visual-agent)
 - [Image Generation](#image-generation)
   - [CFG](#cfg)
   - [DDPM，DDIM](#ddpmddim)
@@ -32,7 +33,12 @@
 
 #### DINO(v3)
 
+## Visual Agent
+
+#### Kimi-K3
+
 #### Qwen3.8-VL
+
 
 ## Image Generation
 
