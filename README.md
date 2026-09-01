@@ -174,11 +174,28 @@
 - Trellis
 - Trellis2
 
+## Graphics Basics
+
+- 连通分量: 从任意一个参与建面的 vertex 出发，应当能沿 mesh 到达其他所有 vertex.
+- 流形/非流形: (patch 连通不代表一定流形.)
+  - 流行边：
+    - 一条普通内部边应该恰好连接 2 个面；
+    - 边界边连接 1 个面，仍然是合法的 manifold-with-boundary；
+  - 非流形的典型判断是：                                                                   
+    - 一条边连接超过 2 个面，通常就是非流形边；                                            
+    - 某个顶点的局部邻域无法展开成圆盘或半圆盘，也是非流形顶点。
+- 6-connectivity: 三维规则网格中，一个 voxel 有：                                                                                                                                   
+  - 6 个共享*面*的邻居：±X、±Y、±Z，6-connectivity 只把这种种视为真正相邻，下面两种不算；
+  - 12 个只共享边的邻居；                                                                                                                                                                 
+  - 8 个只共享顶点的邻居。                                                                                                                                                                
+
+
+
 #### DCx(SIG' 2026)
 - [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
-- 本质是针对 NUDF 的扩展版 DC，目标是
-  1. LUT(LookUp Table) DCx 会考察每个局部 2×2×2 邻域中的 8 个 voxel：每个位置上 1 = active voxel / 0 = empty voxel
-  2. 
+- DCx 是一种面向 field-free occupancy + dual vertices 的、支持上下文和非流形拓扑的 Marching-Cubes-style LUT 方法。
+- 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
+  
 
 
 ## World Model
