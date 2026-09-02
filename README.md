@@ -169,6 +169,8 @@
 ## 3D Generation
 
 - VecSet(Shape2VecSet)
+  - Shape2VecSet = 去坐标化的 latent grid + attention 插值器。
+  - 它把 3D shape 表示成一组可被空间坐标查询的 Transformer memory tokens  
 - VoxSet(Lattice)
 - Vertex-set([MeshyT2](https://github.com/meshy-dev/meshy-t2))
 - Trellis
