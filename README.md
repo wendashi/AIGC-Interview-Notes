@@ -208,8 +208,17 @@
   2. V2M LUT 的几类情况总结:
      - 包含少于三个活动体素的配置均被排除，因其几何结构不足以用于人脸重建；经此筛选后，最终得到 17 个代表性类别。
      - 这些样本均标有体素数量与序列号（例如：3-1、4-2、5-3 等）。第一个数是 active voxel 数量，第二个数则表示该样本在具有相同 active voxel 数的样本中所具有的唯一索引。
-     A. Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
-     B. Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
+     - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
+     - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
+       - 特殊 LUT case 会额外创建 anchor vertex
+          
+    | 信息 | 主要作用 |
+    |---|---|
+    | Active voxel occupancy | 粗粒度表面位置与局部拓扑 |
+    | V2M LUT | face connectivity |
+    | Representative/dual point | sub-voxel 几何位置 |
+    | Additional anchor | 特殊复杂 case 的内部连接与几何 |
+    | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
   
 
 
