@@ -14,6 +14,8 @@
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
+- [Graphics Basics](#graphics-basics)
+  - [DCx](#dcx-sig26)
 - [World Model](#world-model)
 - [Simulation](#simulation)
 - [General AI/ML Notes 手撕](#general-aiml-notes-手撕)
@@ -193,7 +195,7 @@
 
 
 
-#### DCx(SIG' 2026)
+#### DCx-SIG26
 - [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
 - DCx 是一种面向 field-free occupancy + dual vertices 的、支持上下文和非流形拓扑的 Marching-Cubes-style LUT 方法。
 - 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
