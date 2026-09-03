@@ -167,6 +167,8 @@
 
 - https://github.com/willisma/SiT
   
+- Flux2, Qwen-Image, Z-image
+
 
 ## 3D Generation
 
@@ -197,14 +199,25 @@
 
 #### DCx-SIG26
 - [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
-- DCx 是一种面向 field-free occupancy + dual vertices 的、支持上下文和非流形拓扑的 Marching-Cubes-style LUT 方法。
-- 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
+- DCx 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
+- 针对 active voxel 和 voxel 中的代表点，用 V2M LUT(Vertices to Mesh LookUp Table)来建面:
+  1. V2M LUT 的设计原则:
+     A. Connectivity: 建立的 mesh patch 本身是否连通。
+     B. Consistent Spatial Partitioning: mesh 切分出的三维空间区域是否与 voxel configuration 一致。 
+     C. Minimality: 用最少的非流形结构实现A和B。
+  2. V2M LUT 的几类情况总结:
+     - 包含少于三个活动体素的配置均被排除，因其几何结构不足以用于人脸重建；经此筛选后，最终得到 17 个代表性类别。
+     - 这些样本均标有体素数量与序列号（例如：3-1、4-2、5-3 等）。第一个数是 active voxel 数量，第二个数则表示该样本在具有相同 active voxel 数的样本中所具有的唯一索引。
+     A. Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
+     B. Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
   
 
 
 ## World Model
 - Cosmos 3
+- Flux 3
 
+  
 ## Simulation
 - Isaac SIm
 - MuJoCo
