@@ -200,7 +200,7 @@
 #### DCx-SIG26
 - [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
 - DCx 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
-- 针对 active voxel 和 voxel 中的代表点，用 V2M LUT(Vertices to Mesh LookUp Table)来建面:
+- 针对 active voxel 和 voxel 中的代表点，用 V2M LUT(Voxel to Mesh LookUp Table)来建面:
   1. V2M LUT 的设计原则:
      A. Connectivity: 建立的 mesh patch 本身是否连通。
      B. Consistent Spatial Partitioning: mesh 切分出的三维空间区域是否与 voxel configuration 一致。 
@@ -210,7 +210,8 @@
      - 这些样本均标有体素数量与序列号（例如：3-1、4-2、5-3 等）。第一个数是 active voxel 数量，第二个数则表示该样本在具有相同 active voxel 数的样本中所具有的唯一索引。
      - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
      - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
-       - 特殊 LUT case 会额外创建 anchor vertex
+       - Additional anchor：特殊拓扑无法只连接原 dual vertices 时，对相关 dual vertices 求均值，生成中心/面中心 anchor，再以它为中心建三角面。
+       - Vertex fine-tuning：可选的建面后几何优化；拓扑固定，通过最小化顶点及面中心的 UDF 值，并加入 Laplacian 正则，将顶点贴近零水平集。
           
     | 信息 | 主要作用 |
     |---|---|
@@ -220,6 +221,10 @@
     | Additional anchor | 特殊复杂 case 的内部连接与几何 |
     | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
   
+  3. 整体流程: 
+     - 输入: active voxel(occupancy) + dual vertices(voxel 中的代表点)
+     - 遍历整个网格中所有相互重叠的 \(2\times2\times2\) active voxel 邻域。
+     - 
 
 
 ## World Model
