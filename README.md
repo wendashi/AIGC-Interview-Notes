@@ -199,19 +199,23 @@
 
 #### DCx-SIG26
 - [Dual Contouring over Expanded Cubes for Zero-Level Set Extraction from Neural Unsigned Distance Functions](https://github.com/jjjkkyz/DCx)
+
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+  
 - DCx 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
 - 针对 active voxel 和 voxel 中的代表点，用 V2M LUT(Voxel to Mesh LookUp Table)来建面:
   1. V2M LUT 的设计原则:
-     A. Connectivity: 建立的 mesh patch 本身是否连通。
-     B. Consistent Spatial Partitioning: mesh 切分出的三维空间区域是否与 voxel configuration 一致。 
-     C. Minimality: 用最少的非流形结构实现A和B。
+     - A. Connectivity: 建立的 mesh patch 本身是否连通。
+     - B. Consistent Spatial Partitioning: mesh 切分出的三维空间区域是否与 voxel configuration 一致。 
+     - C. Minimality: 用最少的非流形结构实现A和B。
   2. V2M LUT 的几类情况总结:
-     - 包含少于三个活动体素的配置均被排除，因其几何结构不足以用于人脸重建；经此筛选后，最终得到 17 个代表性类别。
+     - 包含少于三个active voxel的配置均被排除，因其几何结构不足以用于形成 Face；经此筛选后，最终得到 17 个代表性类别。
      - 这些样本均标有体素数量与序列号（例如：3-1、4-2、5-3 等）。第一个数是 active voxel 数量，第二个数则表示该样本在具有相同 active voxel 数的样本中所具有的唯一索引。
      - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
      - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
-       - Additional anchor：特殊拓扑无法只连接原 dual vertices 时，对相关 dual vertices 求均值，生成中心/面中心 anchor，再以它为中心建三角面。
-       - Vertex fine-tuning：可选的建面后几何优化；拓扑固定，通过最小化顶点及面中心的 UDF 值，并加入 Laplacian 正则，将顶点贴近零水平集。
+       - Group 2.1 Additional anchor：特殊拓扑无法只连接原 dual vertices 时，对相关 dual vertices 求均值，生成中心/面中心 anchor，再以它为中心建三角面。
+       - Group 2.2 Vertex fine-tuning：可选的建面后几何优化；拓扑固定，通过最小化顶点及面中心的 UDF 值，并加入 Laplacian 正则，将顶点贴近零水平集。
           
     | 信息 | 主要作用 |
     |---|---|
@@ -223,9 +227,14 @@
   
   3. 整体流程: 
      - 输入: active voxel(occupancy) + dual vertices(voxel 中的代表点)
-     - 遍历整个网格中所有相互重叠的 \(2\times2\times2\) active voxel 邻域。
-     - 
-
+     - 遍历整个网格中所有相互重叠的 $2\times2\times2$ voxel 邻域。
+     - 每 8 个 voxel 中按 active voxel 的 pattern 去 LUT 中查表，来确定连接方式。
+       - Group 1: Context-Unaware	只根据当前 8-bit occupancy 和 face_table[m] 建面
+       - Group 2.1: Anchor Free	查询相邻 expanded cube 的 cube_types，决定候选面保留/删除；仍只连接已有 dual vertices 
+       - Group 2.2: Anchor Group	查询邻居，并额外生成 anchor vertex，再围绕 anchor 建面 
+    
+       
+</details>
 
 ## World Model
 - Cosmos 3
