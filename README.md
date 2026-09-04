@@ -217,21 +217,23 @@
        - Group 2.1 Additional anchor：特殊拓扑无法只连接原 dual vertices 时，对相关 dual vertices 求均值，生成中心/面中心 anchor，再以它为中心建三角面。
        - Group 2.2 Vertex fine-tuning：可选的建面后几何优化；拓扑固定，通过最小化顶点及面中心的 UDF 值，并加入 Laplacian 正则，将顶点贴近零水平集。
           
-    | 信息 | 主要作用 |
-    |---|---|
-    | Active voxel occupancy | 粗粒度表面位置与局部拓扑 |
-    | V2M LUT | face connectivity |
-    | Representative/dual point | sub-voxel 几何位置 |
-    | Additional anchor | 特殊复杂 case 的内部连接与几何 |
-    | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
+        | 信息 | 主要作用 |
+        |---|---|
+        | Active voxel occupancy | 粗粒度表面位置与局部拓扑 |
+        | V2M LUT | face connectivity |
+        | Representative/dual point | sub-voxel 几何位置 |
+        | Additional anchor | 特殊复杂 case 的内部连接与几何 |
+        | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
   
   3. 整体流程: 
      - 输入: active voxel(occupancy) + dual vertices(voxel 中的代表点)
      - 遍历整个网格中所有相互重叠的 $2\times2\times2$ voxel 邻域。
-     - 每 8 个 voxel 中按 active voxel 的 pattern 去 LUT 中查表，来确定连接方式。
-       - Group 1: Context-Unaware	只根据当前 8-bit occupancy 和 face_table[m] 建面
-       - Group 2.1: Anchor Free	查询相邻 expanded cube 的 cube_types，决定候选面保留/删除；仍只连接已有 dual vertices 
-       - Group 2.2: Anchor Group	查询邻居，并额外生成 anchor vertex，再围绕 anchor 建面 
+     - 每 8 个 voxel 中按 active voxel 的 pattern 去 LUT 中查表，来确定连接方式。离线枚举当前 occupancy 的所有合法连接方式：
+        - 若仅凭当前 8 个 voxel 就能唯一确定连接 → Group 1。
+        - 若存在多种连接，或共享边界上的面需要邻居确认 → Group 2。
+     - Group 2 进一步：
+        - Group 2.1（Anchor Free）：看邻居后，只需选择/删除已有 dual vertices 之间的面。
+        - Group 2.2（Anchor Group）：仅连接已有 dual vertices 仍无法表达正确拓扑，需要新增 anchor vertex 辅助建面。
     
        
 </details>
