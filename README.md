@@ -191,7 +191,7 @@
     - 一条边连接超过 2 个面，通常就是非流形边；                                            
     - 某个顶点的局部邻域无法展开成圆盘或半圆盘，也是非流形顶点。
 - 6-connectivity: 三维规则网格中，一个 voxel 有：                                                                                                                                   
-  - 6 个共享*面*的邻居：±X、±Y、±Z，6-connectivity 只把这种种视为真正相邻，下面两种不算；
+  - 6 个共享面的邻居：±X、±Y、±Z，6-connectivity 只把这种种视为真正相邻，下面两种不算；
   - 12 个只共享边的邻居；                                                                                                                                                                 
   - 8 个只共享顶点的邻居。                                                                                                                                                                
 
@@ -203,7 +203,7 @@
 <details>
 <summary>📖 详细内容（点击展开）</summary>
   
-- DCx 本身是针对 NUDF 的扩展版 DC，目标是支持非流形、保证拓扑的质量良好。
+- DCx 用手工设计的规则与 LUT，将普通 DC 的单 voxel/单边局部判断，扩展为带邻域上下文的 $2\times2\times2$ occupancy 建面。
 - 针对 active voxel 和 voxel 中的代表点，用 V2M LUT(Voxel to Mesh LookUp Table)来建面:
   1. V2M LUT 的设计原则:
      - A. Connectivity: 建立的 mesh patch 本身是否连通。
