@@ -180,6 +180,17 @@
 - Vertex-set([MeshyT2](https://github.com/meshy-dev/meshy-t2))
 - Trellis
 
+#### LATO2
+
+- [LATO.2](https://github.com/LoHhhha/LATO.2)
+
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+
+- 
+  
+</details>
+
 #### Trellis2-CVPR26
 
 <details>
