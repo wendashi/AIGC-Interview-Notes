@@ -14,7 +14,7 @@
   - [Rectified flow](#rectified-flow-iclr23)
   - [SD3/Flux](#sd3flux-icml24)
 - [3D Generation](#3d-generation)
-  - [Trellis2-CVPR26(Best Student Paper)](#trellis2-cvpr26-best-student-paper)
+  - [Trellis2-CVPR26](#trellis2-cvpr26)
 - [Graphics Basics](#graphics-basics)
   - [DCx](#dcx-sig26)
 - [World Model](#world-model)
@@ -180,7 +180,7 @@
 - Vertex-set([MeshyT2](https://github.com/meshy-dev/meshy-t2))
 - Trellis
 
-#### Trellis2-CVPR26(Best Student Paper)
+#### Trellis2-CVPR26
 
 <details>
 <summary>📖 详细内容（点击展开）</summary>
