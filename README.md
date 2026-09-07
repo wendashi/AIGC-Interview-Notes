@@ -171,6 +171,12 @@
 - Flux2, Qwen-Image, Z-image
 
 
+#### JiT-CVPR26
+
+- https://github.com/LTH14/JiT
+- 怎么就可以直接预测 image? 去掉了 VAE 呢?
+
+
 ## 3D Generation
 
 - VecSet(Shape2VecSet)
