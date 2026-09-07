@@ -178,7 +178,26 @@
 - VoxSet(Lattice)
 - Vertex-set([MeshyT2](https://github.com/meshy-dev/meshy-t2))
 - Trellis
-- Trellis2
+
+#### Trellis2(CVPR 2026 Best Student Paper)
+
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+
+- active voxel 的处理流程:
+  ```
+    raw glb
+    -> FDG / sparse voxelization
+    -> 原始分辨率 active voxels / coords (512³/1024³)
+    
+    -> shape encoder
+    -> 第一层压缩：得到 coarse coords + compressed shape feats (32³/64³)
+    
+    -> ss encoder
+    -> 第二层压缩：把结构进一步压成紧凑的 ss latent z (8³/16³)
+  ```
+
+</details>
 
 ## Graphics Basics
 
