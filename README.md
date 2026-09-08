@@ -3,6 +3,7 @@
 ## 📋 目录
 - [Vision Language](#vision-language)
 - [Visual Agent](#visual-agent)
+  - [ToolCall](#toolcall)
 - [Image Generation](#image-generation)
   - [CFG](#cfg)
   - [DDPM，DDIM](#ddpmddim)
@@ -37,6 +38,20 @@
 #### DINO(v3)
 
 ## Visual Agent
+
+#### ToolCall
+
+#### ReAct
+
+#### Reflection
+
+#### Plan&Execute
+
+#### MultiAgent
+
+#### ContextEngineer
+
+#### HarnessEngineer
 
 #### Kimi-K3
 
