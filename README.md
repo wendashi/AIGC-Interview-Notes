@@ -243,8 +243,11 @@
 </details>
 
 <details>
-<summary>📖 manifold 流形/non-manifold 非流形(patch 连通不代表一定流形.) </summary>
+<summary>📖 manifold 流形/non-manifold 非流形: </summary>
 
+- 流形 ⟹ 每个点附近都有一个"连通的圆盘状补丁"
+  - 局部：流形 ⟹ 每个点有连通的圆盘邻域（这是定义的要求，由"局部像欧氏空间"自动保证）
+  - 整体：流形 ⇏ 整个网格连通（不要求）
 - 流行边：
   - 一条普通内部边应该恰好连接 2 个面；
   - 边界边连接 1 个面，仍然是合法的 manifold-with-boundary；
