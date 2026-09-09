@@ -43,9 +43,7 @@
 
 #### ReAct
 
-#### Reflection
-
-#### Plan&Execute
+#### Reflection(Plan&Execute)
 
 #### MultiAgent
 
