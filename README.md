@@ -233,21 +233,25 @@
 ## Graphics Basics
 <details>
 <summary>📖 连通性(connectivity) </summary>
+  
 - 连通分量: 从任意一个参与建面的 vertex 出发，应当能沿 mesh 到达其他所有 vertex.
 - 6-connectivity: 三维规则网格中，一个 voxel 有：                                                                                                                                   
   - 6 个共享面的邻居：±X、±Y、±Z，6-connectivity 只把这种种视为真正相邻，下面两种不算；
   - 12 个只共享边的邻居；                                                                                                                                                                 
-  - 8 个只共享顶点的邻居。                                                                                                                                                                
+  - 8 个只共享顶点的邻居。           
+  
 </details>
 
 <details>
 <summary>📖 manifold 流形/non-manifold 非流形(patch 连通不代表一定流形.) </summary>
-  - 流行边：
-    - 一条普通内部边应该恰好连接 2 个面；
-    - 边界边连接 1 个面，仍然是合法的 manifold-with-boundary；
-  - 非流形的典型判断是：                                                                   
-    - 一条边连接超过 2 个面，通常就是非流形边；                                            
-    - 某个顶点的局部邻域无法展开成圆盘或半圆盘，也是非流形顶点。
+
+- 流行边：
+  - 一条普通内部边应该恰好连接 2 个面；
+  - 边界边连接 1 个面，仍然是合法的 manifold-with-boundary；
+- 非流形的典型判断是：                                                                   
+  - 一条边连接超过 2 个面，通常就是非流形边；                                            
+  - 某个顶点的局部邻域无法展开成圆盘或半圆盘，也是非流形顶点。
+
 </details>
 
 #### DCx-SIG26
