@@ -273,7 +273,7 @@
           3. Group1 -> 跳过邻域检查，直接把 LUT 生成的局部面汇总进 mesh.
           4. Group2 -> 歧义 case 同时检查 6 个面邻居，确定局部建面规则.
              - Group2.1 Anchor-Free：检查邻居，但不新增 anchor point。
-             - Group2.2 Anchor Group：检查邻居，并引入实际参与建面的 anchor point。
+             - Group2.2 Anchor Group：检查邻居，并引入实际参与建面的 anchor point(当前 cube 内所有 dual vertices 的平均点)。
         5. LUT 使用各 active voxels 的 dual vertices 生成局部面，最后合并为完整 mesh。
      - 每 8 个 voxel 中按 active voxel 的 pattern 去 LUT 中查表，来确定连接方式。离线枚举当前 occupancy 的所有合法连接方式：
         - 若仅凭当前 8 个 voxel 就能唯一确定连接 → Group 1。
