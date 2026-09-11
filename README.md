@@ -293,8 +293,7 @@
      - 这些样本均标有体素数量与序列号（例如：3-1、4-2、5-3 等）。第一个数是 active voxel 数量，第二个数则表示该样本在具有相同 active voxel 数的样本中所具有的唯一索引。
      - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
      - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
-       - Group 2.1 Additional anchor：特殊拓扑无法只连接原 dual vertices 时，对相关 dual vertices 求均值，生成中心/面中心 anchor，再以它为中心建三角面。
-       - Group 2.2 Vertex fine-tuning：可选的建面后几何优化；拓扑固定，通过最小化顶点及面中心的 UDF 值，并加入 Laplacian 正则，将顶点贴近零水平集。
+       - Group 2.1 Anchor-Free 和 Group 2.2 Anchor Group.
           
         | 信息 | 主要作用 |
         |---|---|
