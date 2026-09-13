@@ -302,6 +302,9 @@
         | Representative/dual point | sub-voxel 几何位置 |
         | Additional anchor | 特殊复杂 case 的内部连接与几何 |
         | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
+
+  4. Thinning 和 Postprocessing
+     -  
     
        
 </details>
