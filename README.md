@@ -294,7 +294,6 @@
      - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
      - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
        - Group 2.1 Anchor-Free 和 Group 2.2 Anchor Group.
-          
         | 信息 | 主要作用 |
         |---|---|
         | Active voxel occupancy | 粗粒度表面位置与局部拓扑 |
@@ -304,7 +303,8 @@
         | Vertex fine-tuning | 在 connectivity 不变的情况下贴近零水平集 |
 
   4. Thinning 和 Postprocessing
-     -  
+     - Thinning：LUT 前，基于局部 cube 类型和 6/26 邻域拓扑检查，迭代删除 NUDF 厚体素带中的冗余 active voxels，使其变成单层。
+     - Postprocess：LUT 后，根据边—面邻接，迭代删除导致非流形边/顶点的冗余 faces；不修改顶点位置。
     
        
 </details>
