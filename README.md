@@ -294,6 +294,7 @@
      - Group 1: Context-Unaware Mesh Patterns, 具有自包含性且无需依赖邻近扩展立方体信息的面生成规则模式。
      - Group 2: Context-Aware Mesh Patterns, 适用于基于相邻扩展立方体类别进行自适应面构建、且无需生成网格的几何图案。
        - Group 2.1 Anchor-Free 和 Group 2.2 Anchor Group.
+         
         | 信息 | 主要作用 |
         |---|---|
         | Active voxel occupancy | 粗粒度表面位置与局部拓扑 |
