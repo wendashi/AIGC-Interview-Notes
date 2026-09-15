@@ -307,11 +307,11 @@
      - Thinning (删 voxel)：LUT 前，基于局部 cube 类型和 6/26 邻域拓扑检查，迭代删除 NUDF 厚体素带中的冗余 active voxels，使其变成单层。
        1. 6 邻域：筛出表面 voxel。检查每个 active voxel 上下、左右、前后的 6 个相邻 voxel；只要其中至少一个不是 active，它就是表面 voxel。
        2. cube 类型/LUT：判断该 voxel 是否必须保留。
-         - Case 8 → Condition 1: 只针对 Group 2.2 的 Case 8，检查其外部邻接结构是否合法；不满足 Case 8 结构约束的 voxel 被删除。
-         - 其他局部建面 → Condition 2: 在 voxel 的 3×3×3 局部建面；若该 voxel 只连接边界边，且关联到非流形边，则视为小型开放冗余分支并删除。
+           - Case 8 → Condition 1: 只针对 Group 2.2 的 Case 8，检查其外部邻接结构是否合法；不满足 Case 8 结构约束的 voxel 被删除。
+           - 其他局部建面 → Condition 2: 在 voxel 的 3×3×3 局部建面；若该 voxel 只连接边界边，且关联到非流形边，则视为小型开放冗余分支并删除。
        3. 26 邻域 (3×3×3 中除自身外)：删除 voxel 后，用 26 邻域找到受影响 voxel，重新检查。
      - Postprocess (删 face)：LUT 建面后，反复删除同时满足以下条件的三角形：
-       - 1. 三个顶点都位于边界边或非流形边上；2. 该三角形含边界边。
+       - a. 三个顶点都位于边界边或非流形边上; b. 该三角形含边界边。
        - 本质是剪掉附着在非流形处的小型开放薄片/毛刺。
   
        
