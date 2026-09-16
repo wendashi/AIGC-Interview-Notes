@@ -4,6 +4,7 @@
 - [Vision Language](#vision-language)
 - [Visual Agent](#visual-agent)
   - [ToolCall](#toolcall)
+  - [Qwen3.8-Flash-Next](#qwen38-flash-next)
 - [Image Generation](#image-generation)
   - [CFG](#cfg)
   - [DDPM，DDIM](#ddpmddim)
@@ -51,7 +52,6 @@
 
 #### HarnessEngineer
 
-#### Kimi-K3
 
 #### Qwen3.8-Flash-Next
 
