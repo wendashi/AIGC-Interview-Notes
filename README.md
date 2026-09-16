@@ -53,8 +53,20 @@
 
 #### Kimi-K3
 
-#### Qwen3.8-VL
+#### Qwen3.8-Flash-Next
 
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+Qwen3.8-Flash-Next 围绕 Attention、Residual、Embedding 和 Optimization 四个方面对模型进行了系统升级，在提升模型能力的同时，进一步优化计算效率、模型容量和训练稳定性：
+
+- Attention：采用 GDN + QSA Hybrid 架构。Gated DeltaNet（GDN）高效压缩历史信息；Qwen Sparse Attention（QSA） 通过压缩式轻量 Indexer 在 micro-block 粒度上筛选重要上下文，显著降低长序列 Attention 开销。
+- Residual：引入 Gated Residual（GR），将 Residual Stream 扩展为 4 条分支，并通过动态 Gate 控制信息读写，增强跨层信息传递和训练稳定性。
+- Embedding：引入 N-gram Embedding，利用局部上下文进行查表，以很少的额外计算扩展模型容量；Embedding Table 可以卸载到 Host Memory，并通过异步 Prefetch 与模型计算重叠。
+- Optimization：采用 Muon Optimizer，围绕正交化精度、Muon 与 AdamW 的参数分工以及融合参数拆分等策略进一步优化，并针对新架构重新拟合 Scaling Law。
+
+Qwen3.8-Flash-Next 的主模型参数量为 125B，额外配备 51B 的 N-gram Embedding，每 token 激活 6B 参数。 相比于 Qwen3.7-Plus，Qwen3.8-Flash-Next 显著降低了训练与推理成本，训练开销仅约为前者的 1/9，但在编码和办公任务上却具有更强的能力。
+
+</details>
 
 ## Image Generation
 
