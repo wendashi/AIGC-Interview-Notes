@@ -74,6 +74,9 @@ Qwen3.8-Flash-Next 的主模型参数量为 125B，额外配备 51B 的 N-gram E
 
 #### DDPM，DDIM，
 
+<details>
+<summary>📖 详细内容（点击展开）</summary>
+
 - `Ho/Diffusion lineage` 指的是从 **Ho et al. 的 DDPM (Denoising Diffusion Probabilistic Models, 2020)** 开始的这条技术主线。
 - DDPM的加噪方式
 - DDPM和Flow Matching 区别为什么大家转FlowMatching
@@ -83,6 +86,8 @@ Qwen3.8-Flash-Next 的主模型参数量为 125B，额外配备 51B 的 N-gram E
 - 用固定步数往干净图像上加噪声（正向过程），再学习一个网络逐步去噪（反向过程）；
 - 反向过程通常用网络预测噪声 \(\epsilon\) 或 \(x_0\)；
 - 这条路线的代表模型包括 DDPM/ADM、DDIM、Latent Diffusion 里的 U‑Net 去噪器、Stable Diffusion 的部分骨架方法等。DiT 的“差异化贡献”其实是：它在这条主线上，把传统的 U‑Net 主干替换成 Transformer。
+  
+</details>
 
 #### LDM (Stable Diffusion)-CVPR22
 
