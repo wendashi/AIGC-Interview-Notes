@@ -464,7 +464,8 @@ Transformer Encoder Block /Decoder Block
 - ZeRO-1/ZeRO-2/ZeRO-3
 
 #### 训练精度
-
+<details>
+<summary>📖 详细内容（点击展开）</summary>
 - 指数位：决定能表示多大、多小的数，影响是否溢出/下溢。
 - 尾数位：决定小数有多精细，影响计算误差。
   | 格式 | 位分配：符号/指数/尾数 | 数值范围 | 小数精度 | 每元素显存 | 典型用途 |
@@ -504,7 +505,8 @@ Transformer Encoder Block /Decoder Block
   - 追求低显存和吞吐：INT8
   - 单卡部署超大模型：INT4
   - 新硬件的大规模训练：FP8，但关键计算仍会用 BF16/FP32 累加
-
+</details>
+  
 #### 各类 Optimizer
 - AdamW
 - Weights-only 初始化: 只加载模型权重，不加载 optimizer、训练 step、sampler 和 FP16 log_scale。
